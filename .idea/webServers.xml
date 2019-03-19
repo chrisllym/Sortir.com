@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="411e11a9-f703-4f23-abbc-63679ef89e92" name="Sortir.com" url="http://localhost">
+        <fileTransfer port="0" mountedRoot="C:\wamp64\www\Sortir.com" accessType="MOUNT" />
+      </webServer>
+    </option>
+  </component>
+</project>
