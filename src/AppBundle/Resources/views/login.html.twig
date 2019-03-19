@@ -2,9 +2,9 @@
 
 {% block body %}
 
-    {{ form(form) }}
-
-    <a class="btn btn-primary" type="submit">Se connecter</a>
+     <div class="container col-4 offset-4">
+    {% include "@App/form/formulaire.html.twig" %}
+        </div>
 
 {% endblock %}
 
