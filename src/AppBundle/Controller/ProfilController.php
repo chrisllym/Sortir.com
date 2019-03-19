@@ -26,7 +26,7 @@ class ProfilController extends Controller
 
         $form->handleRequest($request);
 
-        return $this->render('profil/profil.html.twig' ,
+        return $this->render('@App/profil/profil.html.twig' ,
             ['form' => $form->createView()]);
     }
 }

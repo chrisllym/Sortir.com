@@ -1,0 +1,12 @@
+{{ form_start( form, { 'method'    : 'post',
+}
+) }}
+<div class="error">
+    {{ form_errors( form ) }}
+</div>
+
+    {{  form_row( form.pseudo ) }}
+    {{  form_row( form.motDePasse ) }}
+    {{  form_widget( form.motDePasse ) }}
+
+{{ form_end( form ) }}

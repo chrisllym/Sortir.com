@@ -13,7 +13,5 @@ class LoginFormType extends AbstractType {
         $builder        ->add('pseudo', TextType::class)
                         ->add('motDePasse', PasswordType::class)
                         ->add( 'Se connecter', SubmitType::class);
-
-
     }
 }
