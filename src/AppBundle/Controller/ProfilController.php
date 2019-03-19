@@ -17,9 +17,10 @@ use Symfony\Component\Routing\Annotation\Route;
 class ProfilController extends Controller
 {
     /**
-     * @Route("/profil", name="profil")
+     * @Route("/profil", name="monProfil", methods={"POST", "GET"}
+     *     )
      */
-    public function indexAction(Request $request)
+    public function afficherProfil(Request $request)
     {
         $form = $this->createForm(ProfilFormType::class);
 
