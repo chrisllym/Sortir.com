@@ -32,14 +32,15 @@ class ProfilFormType extends AbstractType
             ->add('nom',TextType::class, ['required' => true])
             ->add('telephone',TelType::class, ['required' => true])
             ->add('mail',EmailType::class, ['required' => true])
-            ->add('motDePasse',RepeatedType::class, [
-                'type' => PasswordType::class,
-                'invalid_message' => 'The password fields must match.',
-                'options' => ['attr' => ['class' => 'password-field']],
-                'required' => true,
-                'first_options' => ['label' => 'Password'],
-                'second_options' => ['label' => 'Confirmation'],
-            ])
+            ->add('motDePasse',RepeatedType::class,
+                                                            [
+                                                                'type' => PasswordType::class,
+                                                                'invalid_message' => 'The password fields must match.',
+                                                                'options' => ['attr' => ['class' => 'password-field']],
+                                                                'required' => true,
+                                                                'first_options' => ['label' => 'Password'],
+                                                                'second_options' => ['label' => 'Confirmation'],
+                                                            ])
             ->add('sitesNomSite',EntityType::class, [
                 'class' => 'AppBundle:Sites',
                 'choice_label' => 'nomSite',

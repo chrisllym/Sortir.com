@@ -32,17 +32,6 @@ class ProfilController extends Controller
 
         if ($form->isSubmitted() && $form->isValid())
         {
-/*            $file = $particpant->getPhoto();
-
-            $filename = $this->generateUniqueFileName(). '.' .$file->guessExtension();
-
-            $file->move($this->getParameter('image_directory'), $filename);
-
-            $particpant->setPhoto($filename);*/
-
-            /*$site = $form->get('sitesNomSite')->getData();
-
-            $particpant->setSitesNomSite($site);*/
             $particpant -> setAdministrateur(false);
             $particpant -> setActif(false);
             $particpant -> setPhoto("");

@@ -15,11 +15,17 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
-        $sorties = new Sorties();
+        $sorties    = new Sorties();
 
         $form = $this->createForm(SearchFormType::class, $sorties);
+        $form -> handleRequest($request);
+        if ($form -> isSubmitted() && $form -> isValid() ) {
+            dump($form -> getData() );
+        }
 
         return $this->render('@App/default/index.html.twig',
-            ['form']);
+            [
+                'form' => $form->createView(),
+            ]);
     }
 }

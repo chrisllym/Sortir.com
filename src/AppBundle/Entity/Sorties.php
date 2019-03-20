@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Sorties
- *
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\SortiesRepository")
  * @ORM\Table(name="sorties", indexes={@ORM\Index(name="sorties_etats_fk", columns={"etats_no_etat"}), @ORM\Index(name="sorties_lieux_fk", columns={"lieux_no_lieu"}), @ORM\Index(name="sorties_participants_fk", columns={"organisateur"}), @ORM\Index(name="sorties_sites_fk", columns={"sites_no_site"})})
  * @ORM\Entity
  */
