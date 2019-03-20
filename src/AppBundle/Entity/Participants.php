@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Participants
@@ -14,42 +15,42 @@ class Participants
 {
     /**
      * @var string
-     *
+     * @Assert\NotBlank(message="Veuillez entrer un pseudo")
      * @ORM\Column(name="pseudo", type="string", length=30, nullable=false)
      */
     private $pseudo;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(message="Veuillez entrer un nom")
      * @ORM\Column(name="nom", type="string", length=30, nullable=false)
      */
     private $nom;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(message="Veuillez entrer un prenom")
      * @ORM\Column(name="prenom", type="string", length=30, nullable=false)
      */
     private $prenom;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(message="Veuillez entrer un numero de telephone valide")
      * @ORM\Column(name="telephone", type="string", length=15, nullable=true)
      */
     private $telephone;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(message="Veuillez entrer une adresse mail valide")
      * @ORM\Column(name="mail", type="string", length=20, nullable=false)
      */
     private $mail;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(message="Veuillez entrer un mot de passe")
      * @ORM\Column(name="mot_de_passe", type="string", length=20, nullable=false)
      */
     private $motDePasse;
@@ -82,7 +83,7 @@ class Participants
      *
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Sites")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="sites_nom_site", referencedColumnName="nom_site")
+     *   @ORM\JoinColumn(name="sites_nom_site", referencedColumnName="no_site")
      * })
      */
     private $sitesNomSite;
@@ -93,6 +94,31 @@ class Participants
      * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Sorties", mappedBy="participantsNoParticipant")
      */
     private $sortiesNoSortie;
+
+    /**
+     * @ORM\Column(name="photo", type="string", length=255, nullable=true)
+     *
+     * @Assert\Image()
+     */
+    private $photo;
+
+    /**
+     * @return mixed
+     */
+    public function getPhoto()
+    {
+        return $this->photo;
+    }
+
+    /**
+     * @param mixed $photo
+     * @return Participants
+     */
+    public function setPhoto($photo)
+    {
+        $this->photo = $photo;
+        return $this;
+    }
 
     /**
      * Constructor
