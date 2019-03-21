@@ -27,12 +27,12 @@ class ProfilFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('pseudo', TextType::class, ['required' => true])
+        $builder->add('username', TextType::class, ['required' => true])
             ->add('prenom', TextType::class, ['required' => true])
             ->add('nom',TextType::class, ['required' => true])
             ->add('telephone',TelType::class, ['required' => true])
             ->add('mail',EmailType::class, ['required' => true])
-            ->add('motDePasse',RepeatedType::class,
+            ->add('password',RepeatedType::class,
                                                             [
                                                                 'type' => PasswordType::class,
                                                                 'invalid_message' => 'The password fields must match.',
@@ -41,7 +41,7 @@ class ProfilFormType extends AbstractType
                                                                 'first_options' => ['label' => 'Password'],
                                                                 'second_options' => ['label' => 'Confirmation'],
                                                             ])
-            ->add('sitesNomSite',EntityType::class, [
+            ->add('sitesNoSite',EntityType::class, [
                 'class' => 'AppBundle:Sites',
                 'choice_label' => 'nomSite',
 //                'choice_value' => 'nomSite',

@@ -14,7 +14,6 @@ class Sites
 {
     /**
      * @var string
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Participants", mappedBy="sites_nom_site", cascade={"persist"})
      * @ORM\Column(name="nom_site", type="string", length=30, nullable=false)
      */
     private $nomSite;
@@ -22,6 +21,7 @@ class Sites
     /**
      * @var integer
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Sorties", mappedBy="sites_no_site", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Participants", mappedBy="sites_no_site", cascade={"persist"})
      * @ORM\Column(name="no_site", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")

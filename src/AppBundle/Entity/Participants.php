@@ -2,58 +2,59 @@
 
 namespace AppBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
+use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Participants
  *
- * @ORM\Table(name="participants", uniqueConstraints={@ORM\UniqueConstraint(name="PARTICIPANTS_participants_pseudo_uk", columns={"pseudo"})}, indexes={@ORM\Index(name="sites_participants_fk", columns={"sites_nom_site"})})
+ * @ORM\Table(name="participants", uniqueConstraints={@ORM\UniqueConstraint(name="PARTICIPANTS_participants_pseudo_uk", columns={"pseudo"})}, indexes={@ORM\Index(name="sites_participants_fk", columns={"sites_no_site"})})
  * @ORM\Entity
  */
-class Participants
+class Participants implements UserInterface
 {
     /**
      * @var string
-     * @Assert\NotBlank(message="Veuillez entrer un pseudo")
+     *
      * @ORM\Column(name="pseudo", type="string", length=30, nullable=false)
      */
-    private $pseudo;
+    private $username;
 
     /**
      * @var string
-     * @Assert\NotBlank(message="Veuillez entrer un nom")
+     *
      * @ORM\Column(name="nom", type="string", length=30, nullable=false)
      */
     private $nom;
 
     /**
      * @var string
-     * @Assert\NotBlank(message="Veuillez entrer un prenom")
+     *
      * @ORM\Column(name="prenom", type="string", length=30, nullable=false)
      */
     private $prenom;
 
     /**
      * @var string
-     * @Assert\NotBlank(message="Veuillez entrer un numero de telephone valide")
+     *
      * @ORM\Column(name="telephone", type="string", length=15, nullable=true)
      */
     private $telephone;
 
     /**
      * @var string
-     * @Assert\NotBlank(message="Veuillez entrer une adresse mail valide")
+     *
      * @ORM\Column(name="mail", type="string", length=20, nullable=false)
      */
     private $mail;
 
     /**
      * @var string
-     * @Assert\NotBlank(message="Veuillez entrer un mot de passe")
+     *
      * @ORM\Column(name="mot_de_passe", type="string", length=20, nullable=false)
      */
-    private $motDePasse;
+    private $password;
 
     /**
      * @var boolean
@@ -83,10 +84,10 @@ class Participants
      *
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Sites")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="sites_nom_site", referencedColumnName="no_site")
+     *   @ORM\JoinColumn(name="sites_no_site", referencedColumnName="no_site")
      * })
      */
-    private $sitesNomSite;
+    private $sitesNoSite;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
@@ -103,24 +104,6 @@ class Participants
     private $photo;
 
     /**
-     * @return mixed
-     */
-    public function getPhoto()
-    {
-        return $this->photo;
-    }
-
-    /**
-     * @param mixed $photo
-     * @return Participants
-     */
-    public function setPhoto($photo)
-    {
-        $this->photo = $photo;
-        return $this;
-    }
-
-    /**
      * Constructor
      */
     public function __construct()
@@ -130,27 +113,27 @@ class Participants
 
 
     /**
-     * Set pseudo
+     * Set username
      *
-     * @param string $pseudo
+     * @param string $username
      *
      * @return Participants
      */
-    public function setPseudo($pseudo)
+    public function setUsername($username)
     {
-        $this->pseudo = $pseudo;
+        $this->username = $username;
 
         return $this;
     }
 
     /**
-     * Get pseudo
+     * Get username
      *
      * @return string
      */
-    public function getPseudo()
+    public function getUsername()
     {
-        return $this->pseudo;
+        return $this->username;
     }
 
     /**
@@ -250,15 +233,15 @@ class Participants
     }
 
     /**
-     * Set motDePasse
+     * Set password
      *
-     * @param string $motDePasse
+     * @param string $password
      *
      * @return Participants
      */
-    public function setMotDePasse($motDePasse)
+    public function setPassword($password)
     {
-        $this->motDePasse = $motDePasse;
+        $this->password = $password;
 
         return $this;
     }
@@ -268,9 +251,9 @@ class Participants
      *
      * @return string
      */
-    public function getMotDePasse()
+    public function getPassword()
     {
-        return $this->motDePasse;
+        return $this->password;
     }
 
     /**
@@ -332,27 +315,27 @@ class Participants
     }
 
     /**
-     * Set sitesNomSite
+     * Set sitesNoSite
      *
-     * @param \AppBundle\Entity\Sites $sitesNomSite
+     * @param \AppBundle\Entity\Sites $sitesNoSite
      *
      * @return Participants
      */
-    public function setSitesNomSite(\AppBundle\Entity\Sites $sitesNomSite = null)
+    public function setSitesNoSite(\AppBundle\Entity\Sites $sitesNoSite = null)
     {
-        $this->sitesNomSite = $sitesNomSite;
+        $this->sitesNoSite = $sitesNoSite;
 
         return $this;
     }
 
     /**
-     * Get sitesNomSite
+     * Get sitesNoSite
      *
      * @return \AppBundle\Entity\Sites
      */
-    public function getSitesNomSite()
+    public function getSitesNoSite()
     {
-        return $this->sitesNomSite;
+        return $this->sitesNoSite;
     }
 
     /**
@@ -388,4 +371,38 @@ class Participants
     {
         return $this->sortiesNoSortie;
     }
+
+    public function getRoles()
+    {
+        return ['ROLE_USER'];
+    }
+
+    public function eraseCredentials()
+    {
+        // TODO: Implement eraseCredentials() method.
+    }
+    public function getSalt()
+    {
+        // TODO: Implement getSalt() method.
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPhoto()
+    {
+        return $this->photo;
+    }
+
+    /**
+     * @param mixed $photo
+     * @return Participants
+     */
+    public function setPhoto($photo)
+    {
+        $this->photo = $photo;
+        return $this;
+    }
+
+
 }

@@ -22,7 +22,7 @@ class ProfilController extends Controller
      * @Route("/profil", name="monProfil", methods={"POST", "GET"}
      *     )
      */
-    public function afficherProfil(Request $request)
+    public function modifierProfil(Request $request)
     {
         $particpant = new Participants();
         $site_test = new Sites();
@@ -47,13 +47,16 @@ class ProfilController extends Controller
         return $this->render('@App/profil/profil.html.twig' ,
             [
                 'form' => $form->createView(),
-                'pseudo' => $particpant -> getPseudo(),
-                'prenom' => $particpant -> getPrenom(),
-                'nom' => $particpant -> getNom(),
-                'telephone' => $particpant -> getTelephone(),
-                'mail' => $particpant -> getMail(),
-                'motDePasse' => $particpant -> getMail(),
-                'site' => $site_test -> getNoSite()
+                'participant' => $particpant,
+                'site' => $site_test -> getNomSite()
             ]);
+    }
+
+    /**
+     * @Route("/profil/{id}", name="afficherProfil", methods={"GET", "POST"})
+     */
+    public function afficherProfil(Request $request, $id)
+    {
+        return $this->render('@App/profil/afficherProfil.html.twig');
     }
 }

@@ -37,8 +37,8 @@ class LoginController extends Controller
         return $this -> render('@App/login.html.twig',
             [
                 "form"      => $form        -> createView(),
-                "pseudo"    => $participant -> getPseudo(),
-                "motDePasse"    => $participant -> getMotDePasse(),
+                "username"    => $participant -> getUsername(),
+                "password"    => $participant -> getPassword(),
             ]);
     }
 }
